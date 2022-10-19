@@ -1,14 +1,10 @@
-name: .NET
+name: "CI Build"
 
 on:
   push:
     branches: [ "main" ]
-    paths:
-    - './WebApi/*'
   pull_request:
     branches: [ "main" ]
-    paths:
-    - './WebApi/*'
 
 env:
   project: "./WebApi/WebApi.csproj"
