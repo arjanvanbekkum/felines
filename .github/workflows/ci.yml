@@ -1,0 +1,36 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+    - './WebApi/*'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+    - './WebApi/*'
+
+env:
+  project: ""./WebApi/WebApi.csproj"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@4d4a70f4a5b2a5a5329f13be4ac933f2c9206ac0
+      with:
+        dotnet-version: 6.0.x
+    
+    - name: Restore dependencies
+      run: dotnet restore --project $project
+    
+    - name: Build
+      run: dotnet build --project $project --configuration Release --no-restore 
+    
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
