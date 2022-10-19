@@ -11,7 +11,7 @@ on:
     - './WebApi/*'
 
 env:
-  project: ""./WebApi/WebApi.csproj"
+  project: "./WebApi/WebApi.csproj"
 
 jobs:
   build:
